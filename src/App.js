@@ -10,9 +10,37 @@ import store from "./store/store";
 //Provider from react-redux
 import {Provider} from "react-redux";
 
+//jquery for menu
+import $ from "jquery";
+
 class App extends Component {
 
+componentDidMount(){
 
+  $("body").on("click", ".menu", ()=>{
+
+      $(".menu").next("UL").slideToggle();
+
+  });
+
+
+  $(window).on("load", ()=>{
+    if(window.innerWidth < 596){
+      $(".menu").next("UL").slideUp();
+    }
+
+  });
+
+  $(window).on("resize", ()=>{
+    if(window.innerWidth > 596){
+      $(".menu").next("UL").slideDown();
+    }
+
+  });
+
+
+
+}
   render() {
     return (
       <Provider store={store}>
